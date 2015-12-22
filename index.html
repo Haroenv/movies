@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title> IMDb watchlist </title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="theme-color" content="#7f1734">
+  <!-- <link rel="stylesheet" href="style.css" /> -->
+  <!-- <link rel="icon" type="image/png" href="/favicon.png" /> -->
+  <style>
+  body {
+    font-family: system, -apple-system, Roboto, sans-serif;
+  }
+  .search {
+    max-width: 20rem;
+    display: flex;
+    flex-direction: column;
+  }
+  </style>
+</head>
+<body>
+<div class="search">
+  <label for="username">IMDb username (http://www.imdb.com/user/<strong>ur38622947</strong>/)</label>
+  <input type="text" id="username" name="username" value="ur38622947">
+  <button id="submit">submit</button>
+</div>
+<ul id="results">
+
+</ul>
+<script src="xmlToJson.js"></script>
+<script>
+
+window.addEventListener('load',function(){
+  var watchlist;
+  var x2js = new X2JS();
+  var search = function(userID,callback) {
+    var watchlistAddress = 'http://rss.imdb.com/user/' + userID + '/watchlist';
+    var req = new XMLHttpRequest();
+    req.addEventListener('load', function(){
+      watchlist = x2js.xml_str2json(this.responseText).rss.channel.item;
+      // console.log(watchlist);
+      if (typeof(callback) === 'function') {
+        callback();
+      };
+    });
+    req.open('GET',watchlistAddress);
+    req.send();
+  }
+  document.getElementById('submit').addEventListener('click',function(){
+    search(document.getElementById('username').value,function(){
+      var results = document.getElementById('results');
+      for (var i = 0; i < watchlist.length; i++) {
+        results.innerHTML += '<li><a href="' + watchlist[i].link + '">' + watchlist[i].title + '</a></li>';
+      };
+    });
+  });
+});
+</script>
+</body>
+</html>
