@@ -144,7 +144,7 @@
     var choose = function() {
       var i = Math.floor(Math.random()*watchlist.length-1);
       results.innerHTML += '<li><a href="' + watchlist[i].link + '">' + watchlist[i].title + '</a> since ' +  moment(watchlist[i].pubDate).fromNow() + '</li>';
-      console.log(watchlist[i].link.replace(/http:\//\//imdb.com\//title\/,''));
+      console.log(watchlist[i].link.replace(/http:\/\/imdb.com\/title\//,''));
     }
     var search = function(userID,callback) {
       var watchlistAddress = 'http://rss.imdb.com/user/' + userID + '/watchlist';
