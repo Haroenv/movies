@@ -11,3 +11,7 @@ Movies is licensed under a [Creative Commons Attribution-NonCommercial-ShareAlik
 # Making use of:
 
 [x2js](https://code.google.com/p/x2js/) by Abdulla Abdurakhmanov, licensed under the Apache License, Version 2.0
+
+[moment.js](http://momentjs.com) which is licensed under the MIT license.
+
+IMDb rss list feature

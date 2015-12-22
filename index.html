@@ -10,54 +10,104 @@
   <meta name="theme-color" content="#7f1734">
   <!-- <link rel="stylesheet" href="style.css" /> -->
   <!-- <link rel="icon" type="image/png" href="/favicon.png" /> -->
+  <link rel="stylesheet" href="https://haroen.me/maps-checker/src/style.css">
   <style>
-  body {
-    font-family: system, -apple-system, Roboto, sans-serif;
-  }
-  .search {
-    max-width: 20rem;
-    display: flex;
-    flex-direction: column;
-  }
+    .load{
+      position: relative;
+      height: 80px;
+      width: 80px;
+      border-radius: 80px;
+      border: 3px solid  rgba(255,255,255, .7);
+
+      top: 28%;
+      top: -webkit-calc(50% - 43px);
+      top: calc(50% - 43px);
+      left: 35%;
+      left: -webkit-calc(50% - 43px);
+      left: calc(50% - 43px);
+
+      -webkit-transform-origin: 50% 50%;
+      transform-origin: 50% 50%;
+      -webkit-animation: load 3s linear infinite;
+      animation: load 3s linear infinite;
+    }
+    .load:after{
+      content: "";
+      position: absolute;
+      top: -5px;
+      left: 20px;
+      width: 11px;
+      height: 11px;
+      border-radius: 10px;
+      background-color: #fff;
+    }
+
+    @-webkit-keyframes load{
+      0%{-webkit-transform:rotate(0deg);}
+      100%{-webkit-transform:rotate(360deg);}
+    }
+
+    @keyframes load{
+      0%{transform:rotate(0deg);}
+      100%{transform:rotate(360deg);}
+    }
   </style>
 </head>
 <body>
-<div class="search">
-  <label for="username">IMDb username (http://www.imdb.com/user/<strong>ur38622947</strong>/)</label>
-  <input type="text" id="username" name="username" value="ur38622947">
-  <button id="submit">submit</button>
-</div>
-<ul id="results">
+  <header>
+    <h1><a href="">Movies</a></h1>
+    <div class="search">
+      <div class="search--element">
+        <label for="username">IMDb username</label>
+        <input type="text" id="username" name="username" value="ur38622947">
+      </div>
+      <div class="search--element">
+        <button id="submit">submit</button>
+      </div>
+    </div>
+  </header>
+  <div class="content">
+    <p>Find movies on your IMDb watchlist. Your userame is the part of your url starting with <strong>ur</strong> (http://www.imdb.com/user/<strong>ur38622947</strong>/)</p>
+    <p>You've been meaning to watch </p>
+    <ul id="results"></ul>
+  </div>
+  <footer>
+    <p>Made by <a href="https://haroen.me">Haroen</a> | No affiliation with <a href="http://imdb.org">IMDb</a> | code on <a href="https://github.com/haroenv/movies">GitHub</a></p>
+  </footer>
+  <script src="xmlToJson.js"></script>
+  <script src="moment.js"></script>
+  <script>
 
-</ul>
-<script src="xmlToJson.js"></script>
-<script>
-
-window.addEventListener('load',function(){
-  var watchlist;
-  var x2js = new X2JS();
-  var search = function(userID,callback) {
-    var watchlistAddress = 'http://rss.imdb.com/user/' + userID + '/watchlist';
-    var req = new XMLHttpRequest();
-    req.addEventListener('load', function(){
-      watchlist = x2js.xml_str2json(this.responseText).rss.channel.item;
+    window.addEventListener('load',function(){
+      var watchlist, id;
+      var x2js = new X2JS();
+      var search = function(userID,callback) {
+        var watchlistAddress = 'http://rss.imdb.com/user/' + userID + '/watchlist';
+        var req = new XMLHttpRequest();
+        req.addEventListener('load', function(){
+          watchlist = x2js.xml_str2json(this.responseText).rss.channel.item;
       // console.log(watchlist);
       if (typeof(callback) === 'function') {
         callback();
       };
     });
-    req.open('GET',watchlistAddress);
-    req.send();
-  }
-  document.getElementById('submit').addEventListener('click',function(){
-    search(document.getElementById('username').value,function(){
-      var results = document.getElementById('results');
-      for (var i = 0; i < watchlist.length; i++) {
-        results.innerHTML += '<li><a href="' + watchlist[i].link + '">' + watchlist[i].title + '</a></li>';
-      };
+        if (userID !== id) {
+          req.open('GET',watchlistAddress);
+          req.send();
+          id = userID;
+        };
+      }
+      document.getElementById('submit').addEventListener('click',function(){
+        var results = document.getElementById('results');
+        results.classList.add('load');
+        search(document.getElementById('username').value,function(){
+          results.classList.remove('load');
+          for (var i = 0; i < watchlist.length; i++) {
+            results.innerHTML += '<li><a href="' + watchlist[i].link + '">' + watchlist[i].title + '</a> since ' +  moment(watchlist[i].pubDate).fromNow() + '</li>';
+          };
+        });
+      });
     });
-  });
-});
 </script>
 </body>
 </html>
