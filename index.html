@@ -164,11 +164,16 @@
       //   };
       // });
       if (userID !== id) {
-        reqWL.open('GET',watchlistAddress);
-        reqWL.send();
-        // reqRL.open('GET',ratingsAddress);
-        // reqRL.send();
-        id = userID;
+        try {
+            reqWL.open('GET',watchlistAddress);
+            reqWL.send();
+            // reqRL.open('GET',ratingsAddress);
+            // reqRL.send();
+            id = userID;          
+        } catch(e) {
+            alert(e);
+        }
+
       };
     }
     document.getElementById('submit').addEventListener('click',function(){
