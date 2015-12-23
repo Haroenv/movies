@@ -32,9 +32,9 @@ window.addEventListener('load',function(){
     */
 
     if (userID !== id) {
-      req.open('POST',watchlistAddress);
-      req.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-      req.send('userID='+userID);
+      reqWL.open('POST',watchlistAddress);
+      reqWL.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+      reqWL.send('userID='+userID);
 
       // reqRL.open('GET',ratingsAddress);
       // reqRL.send();
