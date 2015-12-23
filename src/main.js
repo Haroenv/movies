@@ -10,7 +10,7 @@ window.addEventListener('load',function(){
   }
 
   var search = function(userID,callback) {
-    var watchlistAddress = 'http://rss.imdb.com/user/' + userID + '/watchlist';
+    var watchlistAddress = 'src/watchlist.php';
     //var ratingsAddress = 'https://www.imdb.com/list/export?list_id=ratings&author_id=' + userID;
 
     var reqWL = new XMLHttpRequest();
@@ -32,8 +32,9 @@ window.addEventListener('load',function(){
     */
 
     if (userID !== id) {
-      reqWL.open('GET',watchlistAddress);
-      reqWL.send();
+      req.open('POST',watchlistAddress);
+      req.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+      req.send('userID='+userID);
 
       // reqRL.open('GET',ratingsAddress);
       // reqRL.send();
