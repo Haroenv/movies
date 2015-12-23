@@ -1,6 +1,6 @@
 # Movies
 
-[haroen.me/movies](https://haroen.me/movies) will take a few random movies from your IMDb watchlist, to help you choose.
+[mywatchlist.herokuapp.com](https://mywatchlist.herokuapp.com) will take a few random movies from your IMDb watchlist, to help you choose.
 
 # License
 
