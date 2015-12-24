@@ -15,3 +15,5 @@ Movies is licensed under a [Creative Commons Attribution-NonCommercial-ShareAlik
 [moment.js](http://momentjs.com) which is licensed under the MIT license.
 
 IMDb rss list feature
+
+OMDb api
