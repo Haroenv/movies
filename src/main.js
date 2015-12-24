@@ -1,5 +1,5 @@
 window.addEventListener('load',function(){
-  var watchlist, id, ratings;
+  var watchlist, id, ratings,requestID;
   var x2js = new X2JS();
 
   if (localStorage.getItem('id')) {
@@ -36,7 +36,7 @@ window.addEventListener('load',function(){
     });
     */
 
-    if (userID !== id) {
+    if (userID !== requestID) {
       reqWL.open('POST',watchlistAddress);
       reqWL.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
       reqWL.send('userID='+userID);
@@ -44,7 +44,7 @@ window.addEventListener('load',function(){
       // reqRL.open('GET',ratingsAddress);
       // reqRL.send();
 
-      id = userID;
+      requestID = userID;
     };
   }
 
