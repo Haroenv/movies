@@ -1,10 +1,9 @@
 window.addEventListener('load',function(){
-  var watchlist, id, ratings,requestID;
+  var watchlist, ratings;
   var x2js = new X2JS();
 
   if (localStorage['id']) {
-    id = localStorage['id'];
-    document.getElementById('username').value = id;
+    document.getElementById('username').value = localStorage['id'];
   }
 
   var choose = function() {
@@ -35,23 +34,20 @@ window.addEventListener('load',function(){
     });
     */
 
-    if (userID !== requestID) {
-      reqWL.open('POST',watchlistAddress);
-      reqWL.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-      reqWL.send('userID='+userID);
+    reqWL.open('POST',watchlistAddress);
+    reqWL.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+    reqWL.send('userID='+userID);
 
-      // reqRL.open('GET',ratingsAddress);
-      // reqRL.send();
-
-      requestID = userID;
-    };
+    // reqRL.open('GET',ratingsAddress);
+    // reqRL.send();
   }
 
   document.getElementById('submit').addEventListener('click',function(){
-    localStorage['id'] = id;
     var results = document.getElementById('results');
-    if (results.innerHTML.length === 0) {
+    if (results.innerHTML.length === 0 || document.getElementById('username').value !== localStorage['id']) {
+      results.innerHTML = '';
       results.classList.add('load');
+      localStorage['id'] = document.getElementById('username').value;
 
       search(document.getElementById('username').value,function(){
         results.classList.remove('load');
