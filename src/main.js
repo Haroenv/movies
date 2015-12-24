@@ -6,8 +6,7 @@ window.addEventListener('load',function(){
     document.getElementById('username').value = localStorage['id'];
   }
 
-  var card = function(info,moment) {
-    console.log(info,since);
+  var card = function(info,moment,src) {
     var movie = document.createElement('div');
     var card = document.createElement('div');
 
@@ -34,7 +33,7 @@ window.addEventListener('load',function(){
     card.classList.add('card');
     controls.classList.add('controls');
 
-    img.src = info.Poster === 'N/A' ? 'src/404.svg' : info.Poster;
+    img.src = src;
     title.innerHTML = info.Title;
     plot.innerHTML = info.Plot;
     since.innerHTML = moment;
@@ -69,8 +68,20 @@ window.addEventListener('load',function(){
 
     var req = new XMLHttpRequest();
     req.addEventListener('load',function(){
-      moment(watchlist[i].pubDate).fromNow();
-      card(JSON.parse(this.responseText),moment(watchlist[i].pubDate).fromNow());
+      var response = JSON.parse(this.responseText);
+
+      var image = new XMLHttpRequest();
+      image.addEventListener('load',function(){
+        card(response,moment(watchlist[i].pubDate).fromNow(),this.responseText);
+      });
+      if (response.Poster === 'N/A') {
+        card(response,moment(watchlist[i].pubDate).fromNow(),'src/404.svg');
+      } else {
+        image.open('POST','src/poster.php');
+        image.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+        image.send('url='+response.Poster);
+      }
+
     });
     req.open('GET',omdb);
     req.send();
