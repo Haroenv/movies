@@ -2,13 +2,13 @@ html {
   font-family: system, -apple-system, Roboto, sans-serif;
   box-sizing: border-box;
   color: #263238;
-  background-color: #EFEFEF;
+  background-color: #EFEFEF
 }
 
 *,
 *:before,
 *:after {
-  box-sizing: inherit;
+  box-sizing: inherit
 }
 
 body {
@@ -19,7 +19,7 @@ body {
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
   flex-direction: column;
-  min-height: 100vh;
+  min-height: 100vh
 }
 
 input,
@@ -35,7 +35,7 @@ button {
   -webkit-appearance: none;
   -moz-appearance: none;
   background-color: #EFEFEF;
-  color: #263238;
+  color: #263238
 }
 
 input:hover,
@@ -45,20 +45,20 @@ button:hover {
   box-shadow: 0 0 0 0.1em #EFEFEF;
   color: #EFEFEF;
   background-color: #F44336;
-  cursor: pointer;
+  cursor: pointer
 }
 
 input:active,
 select:active,
 button:active {
-  box-shadow: 0 0 0 2px #EFEFEF;
+  box-shadow: 0 0 0 2px #EFEFEF
 }
 
 input:disabled,
 select:disabled,
 button:disabled {
   color: #AFAFAF;
-  cursor: not-allowed;
+  cursor: not-allowed
 }
 
 button {
@@ -66,19 +66,19 @@ button {
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
-  user-select: none;
+  user-select: none
 }
 
 button:hover {
-  color: #EFEFEF;
+  color: #EFEFEF
 }
 
 a {
-  color: #2196F3;
+  color: #2196F3
 }
 
 a:visited {
-  color: #3F51B5;
+  color: #3F51B5
 }
 
 header {
@@ -92,16 +92,16 @@ header {
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
   flex-direction: column;
-  color: #EFEFEF;
+  color: #EFEFEF
 }
 
 h1 {
-  text-align: center;
+  text-align: center
 }
 
 h1 a {
   color: #EFEFEF!important;
-  text-decoration: none;
+  text-decoration: none
 }
 
 .search {
@@ -111,14 +111,14 @@ h1 a {
   -webkit-justify-content: center;
   -ms-flex-pack: center;
   justify-content: center;
-  max-width: 56rem;
+  max-width: 56rem
 }
 
 @media all and (min-width: 56rem) {
   .search {
     width: 56rem;
     margin: 0 auto
- ; };
+  }
 }
 
 .search--element {
@@ -132,7 +132,7 @@ h1 a {
   -ms-flex-pack: end;
   justify-content: flex-end;
   margin: .2em 0;
-  width: 50%;
+  width: 50%
 }
 
 .modal {
@@ -154,14 +154,14 @@ h1 a {
   -webkit-align-items: center;
   -ms-flex-align: center;
   align-items: center;
-  box-shadow: 0 0 .5em black;
+  box-shadow: 0 0 .5em black
 }
 
 @media all and (min-width: 40rem) {
   .modal {
     width: 40vw;
     left: 30vw
- ; };
+  }
 }
 
 .modal button {
@@ -170,7 +170,7 @@ h1 a {
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
-  user-select: none;
+  user-select: none
 }
 
 .notice {
@@ -192,7 +192,7 @@ h1 a {
   display: flex;
   -webkit-align-items: center;
   -ms-flex-align: center;
-  align-items: center;
+  align-items: center
 }
 
 .notice--close {
@@ -203,7 +203,7 @@ h1 a {
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
-  user-select: none;
+  user-select: none
 }
 
 .content {
@@ -216,17 +216,17 @@ h1 a {
   flex-shrink: 0;
   -ms-flex-preferred-size: auto;
   -webkit-flex-basis: auto;
-  flex-basis: auto;
+  flex-basis: auto
 }
 
 .content>*:not(.load) {
-  max-width: 56rem;
+  max-width: 56rem
 }
 
 @media all and (min-width: 56rem) {
   .content>*:not(.load) {
     margin: 1em auto
- ; };
+  }
 }
 
 .result {
@@ -238,40 +238,40 @@ h1 a {
   align-items: center;
   -webkit-justify-content: center;
   -ms-flex-pack: center;
-  justify-content: center;
+  justify-content: center
 }
 
 .result>* {
-  margin: .2em;
+  margin: .2em
 }
 
 .result--number {
   min-width: 2em;
   background-color: #fff;
   padding: .2em;
-  border-radius: .2em;
+  border-radius: .2em
 }
 
 .graph {
   width: 100%!important;
-  height: 14em!important;
+  height: 14em!important
 }
 
 #map {
   width: 100%;
-  height: 14em;
+  height: 14em
 }
 
 .gm-style>div {
   cursor: move!important;
   cursor: -webkit-grab!important;
-  cursor: grab!important;
+  cursor: grab!important
 }
 
 .gm-style>div:active {
   cursor: move!important;
   cursor: -webkit-grabbing!important;
-  cursor: grabbing!important;
+  cursor: grabbing!important
 }
 
 .extra {
@@ -286,11 +286,11 @@ h1 a {
   justify-content: center;
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
-  flex-direction: column;
+  flex-direction: column
 }
 
 .extra>* {
-  margin: .2em;
+  margin: .2em
 }
 
 .extra--container {
@@ -298,16 +298,16 @@ h1 a {
   width: 100%;
   overflow-x: scroll;
   overflow-y: hidden;
-  text-align: center;
+  text-align: center
 }
 
 .extra--container img {
-  height: 99%;
+  height: 99%
 }
 
 footer {
   font-size: .8em;
-  text-align: center;
+  text-align: center
 }
 
 .load{
@@ -325,7 +325,7 @@ footer {
   -webkit-transform-origin: 50% 50%;
   transform-origin: 50% 50%;
   -webkit-animation: load 3s linear infinite;
-  animation: load 3s linear infinite;;
+  animation: load 3s linear infinite;
 }
 .load:after{
   content: "";
@@ -335,17 +335,17 @@ footer {
   width: 11px;
   height: 11px;
   border-radius: 10px;
-  background-color: #fff;;
+  background-color: #fff;
 }
 
 @-webkit-keyframes load{
-  0%{-webkit-transform:rotate(0deg);;}
-  100%{-webkit-transform:rotate(360deg);;};
+  0%{-webkit-transform:rotate(0deg);}
+  100%{-webkit-transform:rotate(360deg);}
 }
 
 @keyframes load{
-  0%{-webkit-transform:rotate(0deg);transform:rotate(0deg);;}
-  100%{-webkit-transform:rotate(360deg);transform:rotate(360deg);;};
+  0%{-webkit-transform:rotate(0deg);transform:rotate(0deg);}
+  100%{-webkit-transform:rotate(360deg);transform:rotate(360deg);}
 }
 
 .container {
@@ -363,7 +363,7 @@ footer {
   flex-wrap: wrap;
   max-width: 56rem;
   width: 100%;
-  max-height: 100%;;
+  max-height: 100%;
 }
 
 .movie {
@@ -377,18 +377,18 @@ footer {
   -ms-flex-direction: column;
   flex-direction: column;
   border-radius: .2em;
-  overflow: hidden;;
+  overflow: hidden;
 }
 
 @media all and (min-width: 500px) {
   .movie {
     width: 31%;
- ; };
+  }
 }
 @media all and (min-width: 650px) {
   .movie {
     width: 23%;
- ; };
+  }
 }
 
 .movies {
@@ -406,7 +406,7 @@ footer {
   flex-wrap: wrap;
   max-width: 56rem;
   width: 100%;
-  max-height: 100%;;
+  max-height: 100%;
 }
 
 .movie .card {
@@ -416,17 +416,17 @@ footer {
   transition: transform .3s ease-in-out, -webkit-transform .3s ease-in-out;
   position: relative;
   /*why do i need a height here */
-  height: 20em;;
+  height: 20em;
 }
 .movie .card.flipped {
   -webkit-transform: translateX(100%);
-  transform: translateX(100%);;
+  transform: translateX(100%);
 }
 .movie .front, .movie .back {
   width: 100%;
   position: absolute;
   -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;;
+  backface-visibility: hidden;
 }
 .movie .front {
   height: auto;
@@ -435,19 +435,19 @@ footer {
   display: flex;
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
-  flex-direction: column;;
+  flex-direction: column;
 }
 .movie .front img {
   width: 100%;
-  height: auto;;
+  height: auto;
 }
 .movie .back {
   -webkit-transform: translateX(-100%);
   transform: translateX(-100%);
-  text-align: center;;
+  text-align: center;
 }
 .movie .back h2 {
-  margin: .2em 0;;
+  margin: .2em 0;
 }
 .movie .controls {
   padding: .2em;
@@ -456,5 +456,5 @@ footer {
   display: flex;
   -webkit-justify-content: space-between;
   -ms-flex-pack: justify;
-  justify-content: space-between;;
+  justify-content: space-between;
 }

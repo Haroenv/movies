@@ -34,7 +34,7 @@ window.addEventListener('load',function(){
     card.classList.add('card');
     controls.classList.add('controls');
 
-    img.src = info.Poster;
+    img.src = info.Poster === 'N/A' ? 'src/404.svg' : info.Poster;
     title.innerHTML = info.Title;
     plot.innerHTML = info.Plot;
     since.innerHTML = moment;
