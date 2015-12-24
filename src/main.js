@@ -6,6 +6,44 @@ window.addEventListener('load',function(){
     document.getElementById('username').value = localStorage['id'];
   }
 
+  var card = function(info,since) {
+    console.log(info,since);
+var movie = document.createElement('div');
+var card = document.createElement('div');
+
+var front = document.createElement('div');
+var img = document.createElement('img');
+
+var back = document.createElement('div');
+var title = document.createElement('h2');
+var plot = document.createElement('p');
+
+var controls = document.createElement('div');
+var link = document.createElement('a');
+var back = document.createElement('button');
+
+document.querySelector('.movies').addChild(movie);
+
+    document.querySelector('.movies').innerHTML +=
+'<div class="movie">'
++'<div class="card">'
++'<div class="front"><img src="'+info.Poster+'"/></div>'
++'<div class="back">'
++'<h2>'+info.Title+'</h2>'
++'<p>'+info.Plot+'</p>'
++'</div>'
++'</div>'
++'<div class="controls"><a href="'+info.imdbID+'">imdb</a>'
++'<button class="show">back</button>'
++'</div>'
++'</div>';
+
+document.querySelector('.controls .show').addEventListener('click',function(){
+  var movie = this.parentNode.parentNode;
+  movie.querySelector('.card').classList.toggle('flipped');
+});
+  }
+
   var choose = function() {
     var i = Math.floor(Math.random()*watchlist.length-1);
     var imdb = watchlist[i].link.substring(watchlist[i].link.indexOf('/tt')+1,watchlist[i].link.length-1)
@@ -13,12 +51,13 @@ window.addEventListener('load',function(){
 
     var req = new XMLHttpRequest();
     req.addEventListener('load',function(){
-      console.log(JSON.parse(this.responseText));
+      moment(watchlist[i].pubDate).fromNow();
+      card(JSON.parse(this.responseText),moment(watchlist[i].pubDate).fromNow());
     });
     req.open('GET',omdb);
     req.send();
 
-    results.innerHTML += '<li><a href="' + watchlist[i].link + '">' + watchlist[i].title + '</a> since ' +  moment(watchlist[i].pubDate).fromNow() + '</li>';
+    //results.innerHTML += '<li><a href="' + watchlist[i].link + '">' + watchlist[i].title + '</a> since ' +  moment(watchlist[i].pubDate).fromNow() + '</li>';
     //console.log(watchlist[i].link.substring(watchlist[i].link.indexOf('/tt')+1,watchlist[i].link.length-1));
   }
 
