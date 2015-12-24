@@ -367,7 +367,7 @@ footer {
 }
 
 .movie {
-  background-color: tomato;
+  background-color: #F44336;
   margin: .2em;
   width: 48%;
   display: -webkit-flex;
