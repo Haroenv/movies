@@ -17,7 +17,8 @@ window.addEventListener('load',function(){
     var back = document.createElement('div');
     var title = document.createElement('h2');
     var plot = document.createElement('p');
-
+    var rating = document.createElement('p');
+    var runtime = document.createElement('p');
 
     var controls = document.createElement('div');
     var link = document.createElement('a');
@@ -37,13 +38,16 @@ window.addEventListener('load',function(){
     title.innerHTML = info.Title;
     plot.innerHTML = info.Plot;
     since.innerHTML = moment;
+    rating.innerHTML = info.imdbRating;
+    runtime.innerHTML = info.Runtime;
     link.innerHTML = 'imdb';
     link.href = 'http://www.imdb.com/title/' + info.imdbID;
 
     front.appendChild(img);
     back.appendChild(title);
     back.appendChild(plot);
-    back.appendChild(since);
+    back.appendChild(runtime);
+    back.appendChild(rating);
     card.appendChild(front);
     card.appendChild(back);
     controls.appendChild(link);
