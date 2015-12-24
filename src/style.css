@@ -219,12 +219,12 @@ h1 a {
   flex-basis: auto
 }
 
-.content p {
+.content>* {
   max-width: 56rem
 }
 
 @media all and (min-width: 56rem) {
-  .content p {
+  .content>* {
     margin: 1em auto
   }
 }
