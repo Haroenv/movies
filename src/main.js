@@ -74,7 +74,7 @@ window.addEventListener('load',function(){
       chosen.push(i);
     }
 
-    var imdb = watchlist[i].link.substring(watchlist[i].link.indexOf('/tt')+1,watchlist[i].link.length-1)
+    var imdb = watchlist[i].link.split('/')[4]; //the id is the fourth part.
     var omdb = 'https://www.omdbapi.com/?i='+imdb+'&plot=short&r=json';
 
     var req = new XMLHttpRequest();
