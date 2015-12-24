@@ -1,5 +1,5 @@
 window.addEventListener('load',function(){
-  var watchlist, ratings, lookedUp = false;
+  var watchlist, ratings, lookedUp = false,chosen = [];
   var x2js = new X2JS();
 
   if (localStorage['id']) {
@@ -64,6 +64,16 @@ window.addEventListener('load',function(){
 
   var choose = function() {
     var i = Math.floor(Math.random()*watchlist.length);
+    if (watchlist.length === chosen.length) {
+      notice('you have no movies on your watchlist left.');
+      return;
+    } else {
+      while (chosen.indexOf(i) > - 1 ) {
+        i = Math.floor(Math.random()*watchlist.length);
+      }
+      chosen.push(i);
+    }
+
     var imdb = watchlist[i].link.substring(watchlist[i].link.indexOf('/tt')+1,watchlist[i].link.length-1)
     var omdb = 'https://www.omdbapi.com/?i='+imdb+'&plot=short&r=json';
 
