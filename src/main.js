@@ -9,7 +9,7 @@ window.addEventListener('load',function(){
   var choose = function() {
     var i = Math.floor(Math.random()*watchlist.length-1);
     var imdb = watchlist[i].link.substring(watchlist[i].link.indexOf('/tt')+1,watchlist[i].link.length-1)
-    var omdb = 'http://www.omdbapi.com/?i='+imdb+'&plot=short&r=json';
+    var omdb = 'https://www.omdbapi.com/?i='+imdb+'&plot=short&r=json';
 
     var req = new XMLHttpRequest();
     req.addEventListener('load',function(){
