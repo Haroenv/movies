@@ -415,7 +415,7 @@ footer {
   transition: transform .3s ease-in-out, -webkit-transform .3s ease-in-out;
   position: relative;
   /*why do i need a height here */
-  height: 300px;
+  height: 20em;
 }
 .movie .card.flipped {
   -webkit-transform: translateX(100%);
