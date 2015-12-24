@@ -28,22 +28,72 @@
     <p>Find movies on your IMDb watchlist. Your username is the part of your url starting with <strong>ur</strong> (http://www.imdb.com/user/<strong>ur38622947</strong>/)</p>
     <p>You've been meaning to watch </p>
     <ul id="results"></ul>
+    <div class="movies">
+      <div class="movie">
+        <div class="card flipped">
+          <div class="front"><img src="https://s.haroen.me/imdb/25th-hour.jpg"/></div>
+          <div class="back">
+            <h2>25th Hour</h2>
+            <p>A defense attorney has a crisis of conscience when he represents a wealthy client who has a foolproof plan to beat the system.</p>
+          </div>
+        </div>
+        <div class="controls"><a href="https://www.imdb.com">imdb</a>
+          <button class="show">back</button>
+        </div>
+      </div>
+      <div class="movie">
+        <div class="card">
+          <div class="front"><img src="https://s.haroen.me/imdb/lincoln-lawyer.jpg"/></div>
+          <div class="back">
+            <h2>The Lincoln Lawyer</h2>
+            <p>something</p>
+          </div>
+        </div>
+        <div class="controls"><a href="https://www.imdb.com">imdb</a>
+          <button class="show">back</button>
+        </div>
+      </div>
+      <div class="movie">
+        <div class="card">
+          <div class="front"><img src="https://s.haroen.me/imdb/the-graduate.jpg"/></div>
+          <div class="back">
+            <h2>The Graduate</h2>
+            <p>something</p>
+          </div>
+        </div>
+        <div class="controls"><a href="https://www.imdb.com">imdb</a>
+          <button class="show">back</button>
+        </div>
+      </div>
+      <div class="movie">
+        <div class="card">
+          <div class="front"><img src="https://s.haroen.me/imdb/lincoln-lawyer.jpg"/></div>
+          <div class="back">
+            <h2>The Lincoln Lawyer</h2>
+            <p>something</p>
+          </div>
+        </div>
+        <div class="controls"><a href="https://www.imdb.com">imdb</a>
+          <button class="show">back</button>
+        </div>
+      </div>
+    </div>
   </div>
   <footer>
-    <p>Made by <a href="https://haroen.me">Haroen</a> | No affiliation with <a href="http://imdb.org">IMDb</a> | code on <a href="https://github.com/haroenv/movies">GitHub</a></p>
+    <p>Made by <a href="https://haroen.me">Haroen</a> | No affiliation with <a href="http://www.imdb.org">IMDb</a> | code on <a href="https://github.com/haroenv/movies">GitHub</a></p>
   </footer>
   <script src="src/xmlToJson.js"></script>
   <script src="src/moment.js"></script>
   <script src="src/notice.js"></script>
   <script src="src/main.js"></script>
   <script>
-      /* google analytics */
-      window.ga = window.ga || function() {
-          (ga.q = ga.q||[]).push(arguments);
-      };
-      ga.l = +new Date;
-      ga("create", "UA-27277115-3", "auto");
-      ga("send", "pageview");
+    /* google analytics */
+    window.ga = window.ga || function() {
+      (ga.q = ga.q||[]).push(arguments);
+    };
+    ga.l = +new Date;
+    ga("create", "UA-27277115-3", "auto");
+    ga("send", "pageview");
   </script>
   <script async src="https://www.google-analytics.com/analytics.js"></script>
 </body>

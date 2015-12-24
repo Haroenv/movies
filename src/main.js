@@ -73,3 +73,15 @@ window.addEventListener('load',function(){
     }
   });
 });
+
+var showButtons = document.querySelectorAll('.controls .show');
+
+for (var i = 0; i < showButtons.length; i++) {
+  (function(button){
+    button.addEventListener('click',function(){
+      var movie = this.parentNode.parentNode;
+      movie.querySelector('.card').classList.toggle('flipped');
+    });
+  })(showButtons[i]);
+}
+
