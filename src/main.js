@@ -20,28 +20,41 @@ var plot = document.createElement('p');
 
 var controls = document.createElement('div');
 var link = document.createElement('a');
-var back = document.createElement('button');
+var button = document.createElement('button');
 
-document.querySelector('.movies').addChild(movie);
+movie.classList.add('movie');
+img.classList.add('img');
+title.classList.add('title');
+plot.classList.add('plot');
+front.classList.add('front');
+back.classList.add('back');
+link.classList.add('link');
+button.classList.add('button');
+card.classList.add('card');
+controls.classList.add('controls');
 
-    document.querySelector('.movies').innerHTML +=
-'<div class="movie">'
-+'<div class="card">'
-+'<div class="front"><img src="'+info.Poster+'"/></div>'
-+'<div class="back">'
-+'<h2>'+info.Title+'</h2>'
-+'<p>'+info.Plot+'</p>'
-+'</div>'
-+'</div>'
-+'<div class="controls"><a href="'+info.imdbID+'">imdb</a>'
-+'<button class="show">back</button>'
-+'</div>'
-+'</div>';
+img.src = info.Poster;
+title.innerHTML = info.Title;
+plot.innerHTML = info.Plot;
+link.innerHTML = 'imdb';
+link.href = 'http://www.imdb.com/title/' + info.imdbID;
+button.innerHTML = 'back';
 
-document.querySelector('.controls .show').addEventListener('click',function(){
-  var movie = this.parentNode.parentNode;
+front.appendChild(img);
+back.appendChild(title);
+back.appendChild(plot);
+card.appendChild(front);
+card.appendChild(back);
+controls.appendChild(link);
+controls.appendChild(button);
+movie.appendChild(card);
+movie.appendChild(controls);
+
+movie.addEventListener('click',function(){
   movie.querySelector('.card').classList.toggle('flipped');
 });
+
+document.querySelector('.movies').appendChild(movie);
   }
 
   var choose = function() {
