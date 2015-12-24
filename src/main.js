@@ -8,8 +8,18 @@ window.addEventListener('load',function(){
 
   var choose = function() {
     var i = Math.floor(Math.random()*watchlist.length-1);
+    var imdb = watchlist[i].link.substring(watchlist[i].link.indexOf('/tt')+1,watchlist[i].link.length-1)
+    var omdb = 'http://www.omdbapi.com/?i='+imdb+'&plot=short&r=json';
+
+    var req = new XMLHttpRequest();
+    req.addEventListener('load',function(){
+      console.log(JSON.parse(this.responseText));
+    });
+    req.open('GET',omdb);
+    req.send();
+
     results.innerHTML += '<li><a href="' + watchlist[i].link + '">' + watchlist[i].title + '</a> since ' +  moment(watchlist[i].pubDate).fromNow() + '</li>';
-    console.log(watchlist[i].link.substring(watchlist[i].link.indexOf('/tt')+1,watchlist[i].link.length-1));
+    //console.log(watchlist[i].link.substring(watchlist[i].link.indexOf('/tt')+1,watchlist[i].link.length-1));
   }
 
   var search = function(userID,callback) {
