@@ -446,7 +446,7 @@ footer {
   transform: translateX(-100%);
   text-align: center;
 }
-.movie .back h2 {
+.movie .back * {
   margin: .2em 0;
 }
 .movie .controls {
