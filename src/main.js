@@ -58,7 +58,8 @@ window.addEventListener('load',function(){
       movie.querySelector('.card').classList.toggle('flipped');
     });
 
-    document.querySelector('.movies').appendChild(movie);
+    var movies = document.querySelector('.movies');
+    movies.insertBefore(movie,movies.firstChild);
   }
 
   var choose = function() {
