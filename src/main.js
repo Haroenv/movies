@@ -2,13 +2,12 @@ window.addEventListener('load',function(){
   var watchlist, id, ratings,requestID;
   var x2js = new X2JS();
 
-  if (localStorage.getItem('id')) {
-    id = localStorage.getItem('id');
+  if (localStorage['id']) {
+    id = localStorage['id'];
     document.getElementById('username').value = id;
   }
 
   var choose = function() {
-    localStorage.setItem('id',id);
     var i = Math.floor(Math.random()*watchlist.length-1);
     results.innerHTML += '<li><a href="' + watchlist[i].link + '">' + watchlist[i].title + '</a> since ' +  moment(watchlist[i].pubDate).fromNow() + '</li>';
     console.log(watchlist[i].link.substring(watchlist[i].link.indexOf('/tt')+1,watchlist[i].link.length-1));
@@ -49,6 +48,7 @@ window.addEventListener('load',function(){
   }
 
   document.getElementById('submit').addEventListener('click',function(){
+    localStorage['id'] = id;
     var results = document.getElementById('results');
     if (results.innerHTML.length === 0) {
       results.classList.add('load');
