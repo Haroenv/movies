@@ -2,6 +2,10 @@
 
 [mywatchlist.herokuapp.com](https://mywatchlist.herokuapp.com) will take a few random movies from your IMDb watchlist, to help you choose.
 
+# Screenshot
+
+![](https://i.imgur.com/ADEYKLA.png)
+
 # License
 
 [![Creative Commons Licence](https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png)](http://creativecommons.org/licenses/by-nc-sa/4.0/)
