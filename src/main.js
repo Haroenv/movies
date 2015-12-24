@@ -8,7 +8,7 @@ window.addEventListener('load',function(){
   }
 
   var choose = function() {
-    localStorage.setItem('id') = id;
+    localStorage.setItem('id',id);
     var i = Math.floor(Math.random()*watchlist.length-1);
     results.innerHTML += '<li><a href="' + watchlist[i].link + '">' + watchlist[i].title + '</a> since ' +  moment(watchlist[i].pubDate).fromNow() + '</li>';
     console.log(watchlist[i].link.substring(watchlist[i].link.indexOf('/tt')+1,watchlist[i].link.length-1));
