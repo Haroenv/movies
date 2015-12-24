@@ -18,7 +18,11 @@ window.addEventListener('load',function(){
 
     var reqWL = new XMLHttpRequest();
     reqWL.addEventListener('load', function(){
-      watchlist = x2js.xml_str2json(this.responseText).rss.channel.item;
+      if (this.responseText.length > 0) {
+        watchlist = x2js.xml_str2json(this.responseText).rss.channel.item;
+      } else {
+        notice('This user doesn\'t exist');
+      }
       if (typeof(callback) === 'function') {
         callback();
       };
