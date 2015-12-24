@@ -1,60 +1,61 @@
 window.addEventListener('load',function(){
-  var watchlist, ratings;
+  var watchlist, ratings, lookedUp = false;
   var x2js = new X2JS();
 
   if (localStorage['id']) {
     document.getElementById('username').value = localStorage['id'];
   }
 
-  var card = function(info,since) {
+  var card = function(info,moment) {
     console.log(info,since);
-var movie = document.createElement('div');
-var card = document.createElement('div');
+    var movie = document.createElement('div');
+    var card = document.createElement('div');
 
-var front = document.createElement('div');
-var img = document.createElement('img');
+    var front = document.createElement('div');
+    var img = document.createElement('img');
 
-var back = document.createElement('div');
-var title = document.createElement('h2');
-var plot = document.createElement('p');
+    var back = document.createElement('div');
+    var title = document.createElement('h2');
+    var plot = document.createElement('p');
 
-var controls = document.createElement('div');
-var link = document.createElement('a');
-var button = document.createElement('button');
 
-movie.classList.add('movie');
-img.classList.add('img');
-title.classList.add('title');
-plot.classList.add('plot');
-front.classList.add('front');
-back.classList.add('back');
-link.classList.add('link');
-button.classList.add('button');
-card.classList.add('card');
-controls.classList.add('controls');
+    var controls = document.createElement('div');
+    var link = document.createElement('a');
+    var since = document.createElement('span');
 
-img.src = info.Poster;
-title.innerHTML = info.Title;
-plot.innerHTML = info.Plot;
-link.innerHTML = 'imdb';
-link.href = 'http://www.imdb.com/title/' + info.imdbID;
-button.innerHTML = 'back';
+    movie.classList.add('movie');
+    img.classList.add('img');
+    title.classList.add('title');
+    plot.classList.add('plot');
+    front.classList.add('front');
+    back.classList.add('back');
+    link.classList.add('link');
+    card.classList.add('card');
+    controls.classList.add('controls');
 
-front.appendChild(img);
-back.appendChild(title);
-back.appendChild(plot);
-card.appendChild(front);
-card.appendChild(back);
-controls.appendChild(link);
-controls.appendChild(button);
-movie.appendChild(card);
-movie.appendChild(controls);
+    img.src = info.Poster;
+    title.innerHTML = info.Title;
+    plot.innerHTML = info.Plot;
+    since.innerHTML = moment;
+    link.innerHTML = 'imdb';
+    link.href = 'http://www.imdb.com/title/' + info.imdbID;
 
-movie.addEventListener('click',function(){
-  movie.querySelector('.card').classList.toggle('flipped');
-});
+    front.appendChild(img);
+    back.appendChild(title);
+    back.appendChild(plot);
+    back.appendChild(since);
+    card.appendChild(front);
+    card.appendChild(back);
+    controls.appendChild(link);
+    controls.appendChild(since);
+    movie.appendChild(card);
+    movie.appendChild(controls);
 
-document.querySelector('.movies').appendChild(movie);
+    movie.addEventListener('click',function(){
+      movie.querySelector('.card').classList.toggle('flipped');
+    });
+
+    document.querySelector('.movies').appendChild(movie);
   }
 
   var choose = function() {
@@ -69,9 +70,6 @@ document.querySelector('.movies').appendChild(movie);
     });
     req.open('GET',omdb);
     req.send();
-
-    //results.innerHTML += '<li><a href="' + watchlist[i].link + '">' + watchlist[i].title + '</a> since ' +  moment(watchlist[i].pubDate).fromNow() + '</li>';
-    //console.log(watchlist[i].link.substring(watchlist[i].link.indexOf('/tt')+1,watchlist[i].link.length-1));
   }
 
   var search = function(userID,callback) {
@@ -109,17 +107,16 @@ document.querySelector('.movies').appendChild(movie);
   }
 
   document.getElementById('submit').addEventListener('click',function(){
-    var results = document.getElementById('results');
-    if (results.innerHTML.length === 0 || document.getElementById('username').value !== localStorage['id']) {
-      results.innerHTML = '';
-      results.classList.add('load');
+    var loader = document.querySelector('.loader');
+    if (!lookedUp || document.getElementById('username').value !== localStorage['id']) {
+      loader.classList.add('load');
       localStorage['id'] = document.getElementById('username').value;
 
       search(document.getElementById('username').value,function(){
-        results.classList.remove('load');
+        loader.classList.remove('load');
         choose();
+        lookedUp = true;
       });
-
     } else {
       choose();
     }

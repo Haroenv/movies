@@ -410,6 +410,7 @@ footer {
 }
 
 .movie .card {
+  cursor: pointer;
   transition: -webkit-transform .3s ease-in-out;
   transition: transform .3s ease-in-out;
   transition: transform .3s ease-in-out, -webkit-transform .3s ease-in-out;
