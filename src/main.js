@@ -54,8 +54,9 @@ window.addEventListener('load',function(){
     if (window.location.search.indexOf('torrent') > -1) {
       var kat = document.createElement('a');
       kat.innerHTML = '⬇️';
-      console.log(info.Title.replace(/,|\./g,'') + ' ' + info.Year)
-      kat.href = 'https://kat.cr/usearch/' + encodeURIComponent(info.Title.replace(/,|\./g,'') + ' ' + info.Year);
+      kat.classList.add('down');
+      var title = info.Title.replace(/,|\.|\!|\?|\:|#/g,'');
+      kat.href = 'https://kat.cr/usearch/' + encodeURIComponent(title + ' ' + info.Year);
       infos.appendChild(kat);
     }
 
