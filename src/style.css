@@ -312,8 +312,8 @@ footer {
 
 .movie {
   background-color: #F44336;
-  margin: .2em;
-  width: 47%;
+  margin: .2%;
+  width: 48.8%;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
@@ -323,20 +323,14 @@ footer {
   border-radius: .2em;
   overflow: hidden;
 }
-
-@media all and (min-width: 350px) {
-  .movie {
-    width: 48%;
-  }
-}
 @media all and (min-width: 500px) {
   .movie {
-    width: 31%;
+    width: 32.1%;
   }
 }
 @media all and (min-width: 650px) {
   .movie {
-    width: 23%;
+    width: 23.8%;
   }
 }
 
