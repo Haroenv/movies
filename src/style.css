@@ -365,7 +365,8 @@ footer {
   -webkit-transform: translateX(-100%);
   transform: translateX(-100%);
   text-align: center;
-  overflow: auto;
+  overflow-y: auto;
+  padding: .4em;
   max-height: 20em;
 }
 .movie .back .info {
