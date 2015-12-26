@@ -359,6 +359,7 @@ footer {
 .movie .front img {
   width: 100%;
   height: auto;
+  max-height: 20em;
 }
 .movie .back {
   -webkit-transform: translateX(-100%);
