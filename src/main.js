@@ -120,6 +120,7 @@ window.addEventListener('load',function(){
     reqWL.addEventListener('load', function(){
       if (this.responseText.length > 0) {
         watchlist = x2js.xml_str2json(this.responseText).rss.channel.item;
+        localStorage['watchlist'] = JSON.stringify(watchlist);
       } else {
         notice('This user doesn\'t exist or doesn\'t have a public watchlist.');
       }
