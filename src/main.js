@@ -1,6 +1,10 @@
-window.addEventListener('load',function(){
+window.addEventListener('DOMContentLoaded',function(){
   var watchlist, ratings, lookedUp = false,chosen = [];
   var x2js = new X2JS();
+
+  if (localStorage['watchlist']) {
+    watchlist = JSON.parse(localStorage['watchlist']);
+  }
 
   if (localStorage['id']) {
     document.getElementById('username').value = localStorage['id'];
@@ -150,16 +154,24 @@ window.addEventListener('load',function(){
   document.getElementById('submit').addEventListener('click',function(){
     var loader = document.querySelector('.loader');
     if (!lookedUp || document.getElementById('username').value !== localStorage['id']) {
-      loader.classList.add('load');
       localStorage['id'] = document.getElementById('username').value;
 
-      search(document.getElementById('username').value,function(){
-        loader.classList.remove('load');
+      if (!localStorage['watchlist']) {
+        loader.classList.add('load');
+      } else {
         choose();
         lookedUp = true;
+      }
+      search(document.getElementById('username').value,function(){
+        if (loader.classList.contains('load')) {
+          choose();
+          loader.classList.remove('load');
+          lookedUp = true;
+        }
       });
     } else {
       choose();
+      lookedUp = true;
     }
   });
 });
