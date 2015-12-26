@@ -16,6 +16,8 @@ window.addEventListener('load',function(){
     var back = document.createElement('div');
     var title = document.createElement('h2');
     var plot = document.createElement('p');
+
+    var infos = document.createElement('div');
     var rating = document.createElement('p');
     var runtime = document.createElement('p');
 
@@ -28,6 +30,7 @@ window.addEventListener('load',function(){
     title.classList.add('title');
     plot.classList.add('plot');
     front.classList.add('front');
+    infos.classList.add('info');
     back.classList.add('back');
     link.classList.add('link');
     card.classList.add('card');
@@ -42,21 +45,21 @@ window.addEventListener('load',function(){
     link.innerHTML = 'imdb';
     link.href = 'http://www.imdb.com/title/' + info.imdbID;
 
-
-
     front.appendChild(img);
     back.appendChild(title);
     back.appendChild(plot);
-    back.appendChild(runtime);
-    back.appendChild(rating);
+    infos.appendChild(runtime);
+    infos.appendChild(rating);
 
     if (window.location.search.indexOf('torrent') > -1) {
       var kat = document.createElement('a');
-      kat.innerHTML = 'kat';
-      kat.href = 'https://kat.cr/usearch/' + encodeURIComponent(info.Title + ' ' + info.Year);
-      back.appendChild(kat);
+      kat.innerHTML = '⬇️';
+      console.log(info.Title.replace(/,|\./g,'') + ' ' + info.Year)
+      kat.href = 'https://kat.cr/usearch/' + encodeURIComponent(info.Title.replace(/,|\./g,'') + ' ' + info.Year);
+      infos.appendChild(kat);
     }
 
+    back.appendChild(infos);
     card.appendChild(front);
     card.appendChild(back);
     controls.appendChild(link);
