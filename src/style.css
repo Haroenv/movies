@@ -97,6 +97,7 @@ header {
 
 h1 {
   text-align: center;
+  margin: .2em;
 }
 
 h1 a {
@@ -386,6 +387,9 @@ footer {
   -webkit-justify-content: space-around;
   -ms-flex-pack: distribute;
   justify-content: space-around;
+}
+.movie .back .down {
+  text-decoration: none;
 }
 .movie .back * {
   margin: .2em 0;
