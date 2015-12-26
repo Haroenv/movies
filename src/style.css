@@ -323,16 +323,10 @@ footer {
   border-radius: .2em;
   overflow: hidden;
 }
-@media all and (min-width: 500px) {
-  .movie {
-    width: 32.1%;
-  }
-}
-@media all and (min-width: 650px) {
-  .movie {
-    width: 23.8%;
-  }
-}
+/* three column layout */
+@media all and (min-width: 500px) { .movie { width: 32.1%; } }
+/* four column */
+@media all and (min-width: 650px) { .movie { width: 23.8%; } }
 
 .movie .card {
   cursor: pointer;
