@@ -53,7 +53,7 @@ window.addEventListener('load',function(){
     if (window.location.search.indexOf('torrent') > -1) {
       var kat = document.createElement('a');
       kat.innerHTML = 'kat';
-      kat.href = 'https://kat.cr/usearch/' + encodeURIComponent(info.Title);
+      kat.href = 'https://kat.cr/usearch/' + encodeURIComponent(info.Title + ' ' + info.Year);
       back.appendChild(kat);
     }
 
