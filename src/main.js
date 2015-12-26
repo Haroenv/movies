@@ -42,11 +42,21 @@ window.addEventListener('load',function(){
     link.innerHTML = 'imdb';
     link.href = 'http://www.imdb.com/title/' + info.imdbID;
 
+
+
     front.appendChild(img);
     back.appendChild(title);
     back.appendChild(plot);
     back.appendChild(runtime);
     back.appendChild(rating);
+
+    if (window.location.search.indexOf('torrent') > -1) {
+      var kat = document.createElement('a');
+      kat.innerHTML = 'kat';
+      kat.href = 'https://kat.cr/usearch/' + encodeURIComponent(info.Title);
+      back.appendChild(kat);
+    }
+
     card.appendChild(front);
     card.appendChild(back);
     controls.appendChild(link);
