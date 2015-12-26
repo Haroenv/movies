@@ -229,82 +229,6 @@ h1 a {
   }
 }
 
-.result {
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-align-items: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center
-}
-
-.result>* {
-  margin: .2em
-}
-
-.result--number {
-  min-width: 2em;
-  background-color: #fff;
-  padding: .2em;
-  border-radius: .2em
-}
-
-.graph {
-  width: 100%!important;
-  height: 14em!important
-}
-
-#map {
-  width: 100%;
-  height: 14em
-}
-
-.gm-style>div {
-  cursor: move!important;
-  cursor: -webkit-grab!important;
-  cursor: grab!important
-}
-
-.gm-style>div:active {
-  cursor: move!important;
-  cursor: -webkit-grabbing!important;
-  cursor: grabbing!important
-}
-
-.extra {
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-align-items: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column
-}
-
-.extra>* {
-  margin: .2em
-}
-
-.extra--container {
-  height: 14em;
-  width: 100%;
-  overflow-x: scroll;
-  overflow-y: hidden;
-  text-align: center
-}
-
-.extra--container img {
-  height: 99%
-}
-
 footer {
   font-size: .8em;
   text-align: center
@@ -369,7 +293,7 @@ footer {
 .movie {
   background-color: #F44336;
   margin: .2em;
-  width: 48%;
+  width: 47%;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
@@ -380,6 +304,12 @@ footer {
   overflow: hidden;
 }
 
+
+@media all and (min-width: 350px) {
+  .movie {
+    width: 48%;
+  }
+}
 @media all and (min-width: 500px) {
   .movie {
     width: 31%;
@@ -416,7 +346,7 @@ footer {
   transition: transform .3s ease-in-out, -webkit-transform .3s ease-in-out;
   position: relative;
   /*why do i need a height here */
-  height: 20em;
+  min-height: 20em;
 }
 .movie .card.flipped {
   -webkit-transform: translateX(100%);
