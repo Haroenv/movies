@@ -78,6 +78,8 @@ window.addEventListener('DOMContentLoaded',function(){
 
     var movies = document.querySelector('.movies');
     movies.insertBefore(movie,movies.firstChild);
+    window.getComputedStyle(movie).opacity;
+    movie.classList.add('visible');
   }
 
   var choose = function() {

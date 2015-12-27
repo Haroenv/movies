@@ -322,6 +322,11 @@ footer {
   flex-direction: column;
   border-radius: .2em;
   overflow: hidden;
+  opacity: 0;
+}
+.movie.visible {
+  transition: opacity .6s ease-out;
+  opacity: 1;
 }
 /* three column layout */
 @media all and (min-width: 500px) { .movie { width: 32.1%; } }
