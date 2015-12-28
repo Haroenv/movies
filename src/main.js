@@ -125,7 +125,11 @@ window.addEventListener('DOMContentLoaded',function(){
     var reqWL = new XMLHttpRequest();
     reqWL.addEventListener('load', function(){
       if (this.responseText.length > 0) {
-        watchlist = x2js.xml_str2json(this.responseText).rss.channel.item;
+        try {
+          watchlist = x2js.xml_str2json(this.responseText).rss.channel.item;
+        } catch(e) {
+          notice('An error occured fetching the data from IMDb.');
+        }
         localStorage['watchlist'] = JSON.stringify(watchlist);
       } else {
         notice('This user doesn\'t exist or doesn\'t have a public watchlist.');
