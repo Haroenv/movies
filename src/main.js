@@ -180,6 +180,11 @@ window.addEventListener('DOMContentLoaded',function(){
       lookedUp = true;
     }
   });
+  document.getElementById('username').addEventListener('keydown',function(e){
+    if (e.keyCode === 13) {
+      document.getElementById('submit').click();
+    }
+  });
 });
 
 var showButtons = document.querySelectorAll('.controls .show');
@@ -192,4 +197,3 @@ for (var i = 0; i < showButtons.length; i++) {
     });
   })(showButtons[i]);
 }
-
