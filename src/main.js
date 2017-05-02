@@ -1,6 +1,9 @@
-window.addEventListener('DOMContentLoaded',function(){
-  var watchlist, ratings, lookedUp = false,chosen = [];
-  var x2js = new X2JS();
+window.addEventListener('DOMContentLoaded', () => {
+  let watchlist;
+  let ratings;
+  let lookedUp = false;
+  const chosen = [];
+  const x2js = new X2JS();
 
   if (localStorage['watchlist']) {
     watchlist = JSON.parse(localStorage['watchlist']);
@@ -10,24 +13,24 @@ window.addEventListener('DOMContentLoaded',function(){
     document.getElementById('username').value = localStorage['id'];
   }
 
-  var card = function(info,moment,src) {
-    var movie = document.createElement('div');
-    var card = document.createElement('div');
+  const card = (info, moment, src) => {
+    const movie = document.createElement('div');
+    const card = document.createElement('div');
 
-    var front = document.createElement('div');
-    var img = document.createElement('img');
+    const front = document.createElement('div');
+    const img = document.createElement('img');
 
-    var back = document.createElement('div');
-    var title = document.createElement('h2');
-    var plot = document.createElement('p');
+    const back = document.createElement('div');
+    const title = document.createElement('h2');
+    const plot = document.createElement('p');
 
-    var infos = document.createElement('div');
-    var rating = document.createElement('p');
-    var runtime = document.createElement('p');
+    const infos = document.createElement('div');
+    const rating = document.createElement('p');
+    const runtime = document.createElement('p');
 
-    var controls = document.createElement('div');
-    var link = document.createElement('a');
-    var since = document.createElement('span');
+    const controls = document.createElement('div');
+    const link = document.createElement('a');
+    const since = document.createElement('span');
 
     movie.classList.add('movie');
     img.classList.add('img');
@@ -41,13 +44,13 @@ window.addEventListener('DOMContentLoaded',function(){
     controls.classList.add('controls');
 
     img.src = src;
-    title.innerHTML = info.Title;
-    plot.innerHTML = info.Plot;
-    since.innerHTML = moment;
-    rating.innerHTML = info.imdbRating;
-    runtime.innerHTML = info.Runtime;
-    link.innerHTML = 'imdb';
-    link.href = 'http://www.imdb.com/title/' + info.imdbID;
+    title.innerText = info.Title;
+    plot.innerText = info.Plot;
+    since.innerText = moment;
+    rating.innerText = info.imdbRating;
+    runtime.innerText = info.Runtime;
+    link.innerText = 'imdb';
+    link.href = `http://www.imdb.com/title/${info.imdbID}`;
 
     front.appendChild(img);
     back.appendChild(title);
@@ -55,12 +58,12 @@ window.addEventListener('DOMContentLoaded',function(){
     infos.appendChild(runtime);
     infos.appendChild(rating);
 
-    if (window.location.search.indexOf('torrent') > -1) {
-      var kat = document.createElement('a');
+    if (window.location.search.includes('torrent')) {
+      const kat = document.createElement('a');
       kat.innerHTML = '⬇️';
       kat.classList.add('down');
-      var title = info.Title.replace(/,|\.|\!|\?|\:|#/g,'');
-      kat.href = `http://pirateunblocker.info/search/${encodeURIComponent(title + ' ' + info.Year)}/0/99/0`;
+      var title = info.Title.replace(/,|\.|\!|\?|\:|#/g, '');
+      kat.href = `http://pirateunblocker.info/search/${encodeURIComponent(`${title} ${info.Year}`)}/0/99/0`;
       infos.appendChild(kat);
     }
 
@@ -72,71 +75,77 @@ window.addEventListener('DOMContentLoaded',function(){
     movie.appendChild(card);
     movie.appendChild(controls);
 
-    movie.addEventListener('click',function(){
+    movie.addEventListener('click', () => {
       movie.querySelector('.card').classList.toggle('flipped');
     });
 
-    var movies = document.querySelector('.movies');
-    movies.insertBefore(movie,movies.firstChild);
+    const movies = document.querySelector('.movies');
+    movies.insertBefore(movie, movies.firstChild);
     window.getComputedStyle(movie).opacity;
     movie.classList.add('visible');
-  }
+  };
 
-  var choose = function() {
-    var i = Math.floor(Math.random()*watchlist.length);
+  const choose = () => {
+    let i = Math.floor(Math.random() * watchlist.length);
     if (watchlist.length === chosen.length) {
       notice('you have no movies on your watchlist left.');
       return;
     } else {
-      while (chosen.indexOf(i) > - 1 ) {
-        i = Math.floor(Math.random()*watchlist.length);
+      while (chosen.includes(i)) {
+        i = Math.floor(Math.random() * watchlist.length);
       }
       chosen.push(i);
     }
 
-    var imdb = watchlist[i].link.split('/')[4]; //the id is the fourth part.
-    var omdb = 'https://www.omdbapi.com/?i='+imdb+'&plot=short&r=json';
+    const imdb = watchlist[i].link.split('/')[4]; //the id is the fourth part.
+    const omdb = `https://www.omdbapi.com/?i=${imdb}&plot=short&r=json`;
 
-    var req = new XMLHttpRequest();
-    req.addEventListener('load',function(){
-      var response = JSON.parse(this.responseText);
+    const req = new XMLHttpRequest();
+    req.addEventListener('load', function() {
+      const response = JSON.parse(this.responseText);
 
-      var image = new XMLHttpRequest();
-      image.addEventListener('load',function(){
-        card(response,moment(watchlist[i].pubDate).fromNow(),this.responseText);
+      const image = new XMLHttpRequest();
+      image.addEventListener('load', function() {
+        card(
+          response,
+          moment(watchlist[i].pubDate).fromNow(),
+          this.responseText
+        );
       });
       if (response.Poster === 'N/A') {
-        card(response,moment(watchlist[i].pubDate).fromNow(),'src/404.svg');
+        card(response, moment(watchlist[i].pubDate).fromNow(), 'src/404.svg');
       } else {
-        image.open('POST','src/poster.php');
-        image.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-        image.send('url='+response.Poster);
+        image.open('POST', 'src/poster.php');
+        image.setRequestHeader(
+          'Content-type',
+          'application/x-www-form-urlencoded'
+        );
+        image.send(`url=${response.Poster}`);
       }
-
     });
-    req.open('GET',omdb);
+    req.open('GET', omdb);
     req.send();
-  }
+  };
 
-  var search = function(userID,callback) {
-    var watchlistAddress = 'src/watchlist.php';
+  const search = (userID, callback) => {
+    const watchlistAddress = 'src/watchlist.php';
     //var ratingsAddress = 'https://www.imdb.com/list/export?list_id=ratings&author_id=' + userID;
 
-    var reqWL = new XMLHttpRequest();
-    reqWL.addEventListener('load', function(){
+    const reqWL = new XMLHttpRequest();
+    reqWL.addEventListener('load', function() {
       if (this.responseText.length > 0) {
         try {
           watchlist = x2js.xml_str2json(this.responseText).rss.channel.item;
-        } catch(e) {
+        } catch (e) {
           notice('An error occured fetching the data from IMDb.');
         }
         localStorage['watchlist'] = JSON.stringify(watchlist);
       } else {
-        notice('This user doesn\'t exist or doesn\'t have a public watchlist.');
+        notice("This user doesn't exist or doesn't have a public watchlist.");
       }
-      if (typeof(callback) === 'function') {
+      if (typeof callback === 'function') {
         callback();
-      };
+      }
     });
 
     /*
@@ -149,17 +158,20 @@ window.addEventListener('DOMContentLoaded',function(){
     });
     */
 
-    reqWL.open('POST',watchlistAddress);
+    reqWL.open('POST', watchlistAddress);
     reqWL.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-    reqWL.send('userID='+userID);
+    reqWL.send(`userID=${userID}`);
 
     // reqRL.open('GET',ratingsAddress);
     // reqRL.send();
-  }
+  };
 
-  document.getElementById('submit').addEventListener('click',function(){
-    var loader = document.querySelector('.loader');
-    if (!lookedUp || document.getElementById('username').value !== localStorage['id']) {
+  document.getElementById('submit').addEventListener('click', () => {
+    const loader = document.querySelector('.loader');
+    if (
+      !lookedUp ||
+      document.getElementById('username').value !== localStorage['id']
+    ) {
       localStorage['id'] = document.getElementById('username').value;
 
       if (!localStorage['watchlist']) {
@@ -168,7 +180,7 @@ window.addEventListener('DOMContentLoaded',function(){
         choose();
         lookedUp = true;
       }
-      search(document.getElementById('username').value,function(){
+      search(document.getElementById('username').value, () => {
         if (loader.classList.contains('load')) {
           choose();
           loader.classList.remove('load');
@@ -180,20 +192,18 @@ window.addEventListener('DOMContentLoaded',function(){
       lookedUp = true;
     }
   });
-  document.getElementById('username').addEventListener('keydown',function(e){
+  document.getElementById('username').addEventListener('keydown', e => {
     if (e.keyCode === 13) {
       document.getElementById('submit').click();
     }
   });
 });
 
-var showButtons = document.querySelectorAll('.controls .show');
+const showButtons = document.querySelectorAll('.controls .show');
 
-for (var i = 0; i < showButtons.length; i++) {
-  (function(button){
-    button.addEventListener('click',function(){
-      var movie = this.parentNode.parentNode;
-      movie.querySelector('.card').classList.toggle('flipped');
-    });
-  })(showButtons[i]);
-}
+showButtons.forEach(button =>
+  button.addEventListener('click', () => {
+    const movie = this.parentNode.parentNode;
+    movie.querySelector('.card').classList.toggle('flipped');
+  })
+);
