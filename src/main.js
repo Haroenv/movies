@@ -114,6 +114,8 @@ function card({ info, moment, src }) {
   rating.innerText = info.imdbRating;
   runtime.innerText = info.Runtime;
   link.innerText = 'imdb';
+  link.rel = 'noopener noreferrer';
+  link.target = '_blank';
   link.href = `http://www.imdb.com/title/${info.imdbID}`;
 
   front.appendChild(img);
