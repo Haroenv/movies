@@ -60,7 +60,7 @@ window.addEventListener('DOMContentLoaded',function(){
       kat.innerHTML = '⬇️';
       kat.classList.add('down');
       var title = info.Title.replace(/,|\.|\!|\?|\:|#/g,'');
-      kat.href = `http://extratorrent.cc/search/?search=${encodeURIComponent(title)}+${encodeURIComponent(info.Year)}&new=1&x=0&y=0`;
+      kat.href = `http://pirateunblocker.info/search/${encodeURIComponent(title + ' ' + info.Year)}/0/99/0`;
       infos.appendChild(kat);
     }
 
