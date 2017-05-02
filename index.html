@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <title> IMDb watchlist </title>
   <meta charset="utf-8" />
@@ -11,10 +12,11 @@
   <link rel="stylesheet" href="src/style.css" />
   <link rel="icon" type="image/png" href="//haroen.me/favicon.png" />
 </head>
+
 <body>
   <header>
     <h1><a href="">Movies</a></h1>
-    <div class="search">
+    <form class="search" id="search">
       <div class="search--element">
         <label for="username">IMDb username</label>
         <input type="text" id="username" name="username" placeholder="urXXXXXXX">
@@ -22,21 +24,23 @@
       <div class="search--element">
         <button id="submit">search</button>
       </div>
-    </div>
+    </form>
   </header>
   <div class="content">
     <p>Find movies on your IMDb watchlist. Your username is the part of your url starting with <strong>ur</strong> (<a href="http://www.imdb.com/">http://www.imdb.com/user/<strong>ur38622947</strong>/</a>)</p>
     <p>You've been meaning to watch </p>
     <div class="loader"></div>
     <div class="movies"></div>
-    <p>For any questions: ping <a href="https://twitter.com/intent/tweet?in_reply_to=680008250973130753&related=haroenv,bullgit">@Haroenv</a> on Twitter</p>
+    <p>For any questions: ping <a href="https://twitter.com/intent/tweet?in_reply_to=680008250973130753&related=haroenv,bullgit">@Haroenv</a>      on Twitter</p>
   </div>
   <footer>
-    <p>Made by <a href="https://haroen.me">Haroen</a> | No affiliation with <a href="http://www.imdb.org">IMDb</a> | code on <a href="https://github.com/haroenv/movies">GitHub</a></p>
+    <p>Made by <a href="https://haroen.me">Haroen</a> | No affiliation with <a href="http://www.imdb.org">IMDb</a> | code on
+      <a href="https://github.com/haroenv/movies">GitHub</a></p>
   </footer>
   <script src="src/xmlToJson.js"></script>
   <script src="src/moment.js"></script>
   <script src="src/notice.js"></script>
   <script src="src/main.js"></script>
 </body>
+
 </html>
